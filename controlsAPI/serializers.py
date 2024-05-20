@@ -18,22 +18,6 @@ class ControlsetReferenceModelSerializer(serializers.ModelSerializer):
         model = ControlSetReference
         fields = "__all__"
 
-    #Create a ControlSetReference instance, ensuring the name exists in Control.
-    # def create(self, validated_data):
-    #     control_instance = self.get_control_instance(validated_data)
-    #     validated_data['name'] = control_instance
-    #     return ControlSetReference.objects.create(**validated_data)
-
-    # def get_control_instance(self, validated_data):
-    #     control_name = validated_data.get('name')
-    #     if not control_name:
-    #         raise serializers.ValidationError("Name field is required.")
-
-    #     try:
-    #         return Control.objects.get(name=control_name)
-    #     except Control.DoesNotExist:
-    #         raise serializers.ValidationError(f"Control with name '{control_name}' does not exist.")
-
 class ControlsetModelSerializer(serializers.ModelSerializer):
     slug = serializers.CharField(max_length= None,read_only=True)
     name = serializers.CharField(max_length=None, validators=[RegexValidator(regex='^[a-zA-Z\s]*$', message='Name must only contain alphabetic characters', code='invalid_name')],)
